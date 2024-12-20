@@ -3,9 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kivanc Ozdemir</title>
+    <title>untitled</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            overflow: hidden;
+            font-family: 'Courier New', monospace;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .hello {
+            font-size: 2em;
+            color: white;
+            animation: flash 1s infinite, rainbow 2s infinite;
+        }
+
+        @keyframes flash {
+            0%, 50% {
+                opacity: 1;
+            }
+            25%, 75% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes rainbow {
+            0% { color: red; }
+            16.6% { color: orange; }
+            33.3% { color: yellow; }
+            50% { color: green; }
+            66.6% { color: blue; }
+            83.3% { color: indigo; }
+            100% { color: violet; }
+        }
+
+        .hello:nth-child(even) {
+            animation-delay: 0.5s;
+        }
+
+    </style>
 </head>
 <body>
-    <h1>Hello World!</h1>
+    <div class="container">
+        <div class="hello">HELLO WORLD</div>
+        <div class="hello">HELLO WORLD</div>
+        <div class="hello">HELLO WORLD</div>
+        <div class="hello">HELLO WORLD</div>
+        <div class="hello">HELLO WORLD</div>
+        <div class="hello">HELLO WORLD</div>
+        <div class="hello">HELLO WORLD</div>
+        <div class="hello">HELLO WORLD</div>
+        <div class="hello">HELLO WORLD</div>
+        <div class="hello">HELLO WORLD</div>
+    </div>
 </body>
 </html>
