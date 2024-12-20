@@ -3,9 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>untitled</title>
+    <title>Kivanc Ozdemir</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            font-family: 'Courier New', monospace;
+            color: #00FF00;
+            overflow: hidden;
+            height: 100vh;
+            position: relative;
+            font-size: 20px; /* Adjust font size as needed */
+        }
+
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 100%;
+            padding-left: 20px;
+        }
+
+        .terminal {
+            font-size: inherit; /* Inherit font size from body */
+            color: #00FF00;
+            opacity: 0.8;
+            padding-left: 20px;
+            white-space: pre-wrap;
+        }
+
+        .input-line {
+            display: flex;
+            align-items: center;
+        }
+
+        .input-line span {
+            margin-right: 10px;
+        }
+
+        input {
+            background-color: black;
+            color: #00FF00;
+            border: none;
+            outline: none;
+            font-family: 'Courier New', monospace;
+            font-size: inherit; /* Inherit font size from body */
+            width: 100%;
+            padding: 5px;
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
-    <h1>website</h1>
+    <div class="container">
+        <div class="terminal" id="terminal">
+        </div>
+    </div>
+
+    <script>
+        const terminal = document.getElementById('terminal');
+
+        function createInputLine() {
+            const inputLine = document.createElement('div');
+            inputLine.classList.add('input-line');
+            inputLine.appendChild(document.createElement('span')).textContent = 'C:\\Users\\admin>';
+
+            const inputField = document.createElement('input');
+            inputLine.appendChild(inputField);
+
+            terminal.appendChild(inputLine);
+            inputField.focus();
+        }
+
+        createInputLine();
+
+        function handleInput() {
+            const inputField = terminal.querySelector('input');
+            const userInput = inputField.value.trim().toLowerCase();
+            const commandLine = document.createElement('div');
+            commandLine.textContent = `C:\\Users\\admin> ${userInput}`;
+            terminal.appendChild(commandLine);
+
+            if (userInput === 'help') {
+                const helpOutput = document.createElement('div');
+                helpOutput.textContent = `Commands:
+- help: Show this help message
+- whoami: Display the website domain (set to kivancozdemir.xyz)
+- clear: Clear the terminal output
+- exit: Exit the terminal`;
+                terminal.appendChild(helpOutput);
+            } else if (userInput === 'whoami') {
+                const whoamiOutput = document.createElement('div');
+                whoamiOutput.textContent = 'kivancozdemir.xyz';
+                terminal.appendChild(whoamiOutput);
+            } else if (userInput === 'clear') {
+                terminal.innerHTML = '';
+                createInputLine();
+            } else if (userInput === 'exit') {
+                alert('Exiting terminal...');
+            } else {
+                const unknownCommand = document.createElement('div');
+                unknownCommand.textContent = `Unknown command: ${userInput}`;
+                terminal.appendChild(unknownCommand);
+            }
+
+            // Remove the current input line before creating a new one
+            terminal.removeChild(inputField.parentElement);
+            createInputLine();
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                handleInput();
+            }
+        });
+    </script>
 </body>
 </html>
